@@ -1,0 +1,4 @@
+.venv/
+isruc_s3/
+test/
+processed/
