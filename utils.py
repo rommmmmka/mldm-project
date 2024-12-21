@@ -1,5 +1,6 @@
 import torch
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, precision_score, recall_score
+from tqdm.notebook import tqdm
 
 from lightsleepnet import LightSleepNet
 
@@ -28,7 +29,7 @@ def train_test_loop(
     optimizer = torch.optim.Adam(model.parameters())
     criterion = torch.nn.CrossEntropyLoss()
 
-    for training_epoch in range(100):
+    for training_epoch in tqdm(range(100), desc="Training"):
         train_loss = 0
         correct = 0
         total = 0
