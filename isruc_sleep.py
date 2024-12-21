@@ -3,12 +3,15 @@ import numpy as np
 import torch
 
 
-def load_dataset(channel_name="F3-A2"):
+CHANNELS = ["F3-A2", "C3-A2", "O1-A2", "F4-A1", "C4-A1", "O2-A1"]
+
+def load_dataset(channel_name="F3-A2", logging: bool = False):
     subjects = []
 
     old_log_level = mne.set_log_level("WARNING", return_old_level=True)
     for subject in range(1, 11):
-        print(f"Loading subject {subject}")
+        if logging:
+            print(f"Loading subject {subject}")
         raw_edf = mne.io.read_raw_edf(
             f"isruc_s3/{subject}/{subject}.edf", preload=True, include=[channel_name]
         )
